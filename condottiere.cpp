@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -31,8 +32,35 @@ class State{
 };
 
 class Cart{
+    public:
+        void shuffleArray(string arr[], int n) {
+            srand(time(nullptr));
+            for (int i = n - 1; i > 0; --i) {
+                int j = rand() % (i + 1);
+                swap(arr[i], arr[j]);
+            }
+        }
 
+        void print(int n){
+            shuffleArray(cards , 89);
+            for (int i = 0; i <89; i +=n ) {
+                cout << "Player " << (i / n) + 1 << " : ";
+                for (int j = 0; j < 10; ++j){
+                    cout << cards[i + j] << " / ";
+                }
+            cout << endl;
+            }
+        }
 
+    private:
+        string cards[89]={"yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel2","yel2","yel2",
+        "yel2","yel2","yel2","yel2","yel2","yel3","yel3","yel3","yel3","yel3","yel3","yel3","yel3","yel4","yel4","yel4",
+        "yel4","yel4","yel4","yel4","yel4","yel5","yel5","yel5","yel5","yel5","yel5","yel5","yel5","yel6","yel6","yel6",
+        "yel6","yel6","yel6","yel6","yel6","yel10","yel10","yel10","yel10","yel10","yel10","yel10","yel10",
+        "zemestan","zemestan","zemestan","tabl_zan","tabl_zan","tabl_zan","tabl_zan","tabl_zan","tabl_zan","bahar",
+        "bahar","bahar","shah_dokht","shah_dokht","shah_dokht","matarsak","matarsak","matarsak","matarsak","matarsak",
+        "matarsak","matarsak","matarsak","matarsak","matarsak","matarsak","matarsak","matarsak","matarsak","matarsak",
+        "matarsak"};
 
 };
 
@@ -50,6 +78,7 @@ class Player{
 
 class Control{
     public:
+        //Control(int num):number(num){};
         int getNumber(){return number ;}
         void setNumber(int n){number=n;}
 
@@ -65,6 +94,7 @@ class Control{
                 newPlayer.setName(name);
                 play.push_back(newPlayer);
             }
+            printShuffle();
         }
 
         int CheckSmall(){
@@ -86,18 +116,37 @@ class Control{
                 cout<< play[i].getAge() << " "<< play[i].getName() <<endl;
             }
         }
-
+        void printShuffle(){
+            switch (getNumber())
+            {
+            case 3:
+                card.print(30);
+                break;
+            case 4:
+                card.print(25);
+                break;
+            case 5:
+                card.print(19);
+                break;
+            case 6:
+                card.print(15);
+                break;
+            default:
+                break;
+            }
+        }
     private:
         int number , age ;
         string name;
+        Cart card;
         vector<Player>play;
 };
+
 
 int main(){
     Control cont;
     cont.getData();
-    cont.show();
-    
+    Cart cardes;    
     return 0;
 }
 
