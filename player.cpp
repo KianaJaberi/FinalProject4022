@@ -1,10 +1,14 @@
 #include <iostream>
+#include <string>
 #include <vector>
 
 class Player {
 
     public :
         Player (){
+        }
+
+        Player ( std :: string n , int a ): name (n) , age (a){
         }
 
         void setAge ( int a ){
@@ -16,6 +20,14 @@ class Player {
 
         int getAge (){
             return age ;
+        }
+
+        void setName ( std :: string n ){
+            name = n ;
+        }
+
+        std :: string getName (){
+            return name ;
         }
 
         void setColor ( std :: string c ){
@@ -41,6 +53,7 @@ class Player {
 
     private :
         int age ;
+        std :: string name ;
         std :: string color ;
         std :: vector <int> states ;
 };
