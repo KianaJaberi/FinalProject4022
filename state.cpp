@@ -1,8 +1,9 @@
 #include <iostream>
 
-class State {
+class States {
 
     public:
+
         bool vicinityStatus ( int state1 , int state2 ){
             if ( states [state1][state2] == 1 ){
                 return true ;
@@ -40,6 +41,7 @@ class State {
         }
 
     private:
+
         int states [14][14] = { {0,1,0,0,1,1,0,0,0,0,0,0,0,0},//BELLA
                                 {1,0,1,1,1,1,0,0,0,0,0,0,0,0},//CALINE
                                 {0,1,0,1,0,1,1,0,0,0,0,0,0,0},//ENNA
