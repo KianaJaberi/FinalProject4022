@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <ctime>
+#include <random>
+#include <iterator>
 
 using namespace std;
 
@@ -42,18 +44,32 @@ class Cart{
         }
 
         void print(int n){
-            shuffleArray(cards , 89);
-            for (int i = 0; i <89; i +=n ) {
-                cout << "Player " << (i / n) + 1 << " : ";
-                for (int j = 0; j < 10; ++j){
-                    cout << cards[i + j] << " / ";
+             vector < vector <string>>  vec ;
+             //int n = 4 ;
+            shuffleCard ( vec , n ) ;
+
+        }
+
+        void shuffleCard ( vector < vector <string>> & vec , int num ){
+            random_device rd;
+            mt19937 g(rd());
+            int k = 0 ;
+            shuffle(cards.begin(), cards.end(), g);
+            for ( int i =0 ; i < num ; i++ ){
+                for ( int j = 10 ; j > 0 ; j -- ){
+                    //cout << vec[i][j];
+                    cout << cards[k];
+                    vec [i][j] = cards [k] ;
+                    //cout << vec[i][j];
+                    //
+                    k ++ ;
                 }
-            cout << endl;
             }
+            cards.erase(cards.begin(), cards.begin() + ( num * 10 ) ) ;
         }
 
     private:
-        string cards[89]={"yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel2","yel2","yel2",
+        vector < string > cards ={"yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel1","yel2","yel2","yel2",
         "yel2","yel2","yel2","yel2","yel2","yel3","yel3","yel3","yel3","yel3","yel3","yel3","yel3","yel4","yel4","yel4",
         "yel4","yel4","yel4","yel4","yel4","yel5","yel5","yel5","yel5","yel5","yel5","yel5","yel5","yel6","yel6","yel6",
         "yel6","yel6","yel6","yel6","yel6","yel10","yel10","yel10","yel10","yel10","yel10","yel10","yel10",
@@ -94,7 +110,8 @@ class Control{
                 newPlayer.setName(name);
                 play.push_back(newPlayer);
             }
-            printShuffle();
+            //printShuffle();
+            card.print(number);
         }
 
         int CheckSmall(){
@@ -116,7 +133,7 @@ class Control{
                 cout<< play[i].getAge() << " "<< play[i].getName() <<endl;
             }
         }
-        void printShuffle(){
+        /*void printShuffle(){
             switch (getNumber())
             {
             case 3:
@@ -134,7 +151,7 @@ class Control{
             default:
                 break;
             }
-        }
+        }*/
     private:
         int number , age ;
         string name;
