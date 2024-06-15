@@ -5,10 +5,8 @@
 class Player {
 
     public :
-        Player (){
-        }
 
-        Player ( std :: string n , int a ): name (n) , age (a){
+        Player (){
         }
 
         void setAge ( int a ){
@@ -51,7 +49,12 @@ class Player {
             }
         }
 
+        int numberOfStates (){
+            return states.size () ;
+        }
+
     private :
+
         int age ;
         std :: string name ;
         std :: string color ;
